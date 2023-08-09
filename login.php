@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet" href="./assets/stylesheets/login_style.css">
+    <link rel="stylesheet" href="./assets/stylesheets/loginStyle.css">
 </head>
 
 <body>
