@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" /> -->
+    <link rel="stylesheet" href="./assets/stylesheets/login_style.css">
 </head>
 
 <body>
@@ -35,13 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                     ?>
                 </span>
-                <div>
-                    <input type="text" placeholder="Username" required="" name="username" />
+                <div class="form-group">
+                    <label for="username">Username: </label><br />
+                    <input class="form-control" type="text" placeholder="Username" required="" name="username" />
                 </div>
-                <div>
-                    <input type="password" placeholder="Password" required="" name="password" />
+                <div class="form-group">
+                    <label for="password">Password: </label><br />
+                    <input class="form-control" type="password" placeholder="Password" required="" name="password" />
                 </div>
-                <div>
+                <div class="form-group remember">
+                    <input type="checkbox" name="remember" />
+                    <label for="remember">Remember me?</label>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Login" />
                 </div>
             </form><!-- form -->
