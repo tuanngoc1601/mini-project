@@ -1,0 +1,28 @@
+.container .detail {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.container .detail .image {
+    width: 75%;
+    height: 30rem;
+}
+
+.container .detail .image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.container .detail .product-info {
+    font-size: 1.1rem;
+}
+
+.container .detail .product-info .action {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    padding-right: 20px;
+}

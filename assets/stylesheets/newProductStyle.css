@@ -1,0 +1,65 @@
+.new-product-form {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.new-product-form .form-content {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.new-product-form .form-content .form-group {
+    margin-bottom: 20px;
+}
+
+.new-product-form .form-content .form-group .form-control {
+    width: 90%;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    -webkit-transition: border 0.5s ease-out;
+    -moz-transition: border 0.5s ease-out;
+    -o-transition: border0.5s ease-out;
+    transition: border 0.5s ease-out;
+}
+
+.new-product-form .form-content .form-group .form-control:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(11, 9, 170);
+}
+
+.new-product-form .form-content .form-group textarea {
+    width: 98%;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid black;
+    -webkit-transition: border 0.5s ease-out;
+    -moz-transition: border 0.5s ease-out;
+    -o-transition: border0.5s ease-out;
+    transition: border 0.5s ease-out;
+}
+
+.new-product-form .form-content .form-group textarea:focus {
+    outline: none;
+    border: 2px solid rgb(11, 9, 170);
+}
+
+.noti {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.noti span {
+    cursor: pointer;
+    font-size: 1.2rem;
+}

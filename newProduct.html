@@ -2,10 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Product list page</title>
+        <title>Add new product page</title>
+        <link rel="stylesheet" href="./assets/stylesheets/productStyle.css" />
         <link
             rel="stylesheet"
-            href="./assets/stylesheets/productListStyle.css"
+            href="./assets/stylesheets/newProductStyle.css"
         />
         <link
             rel="stylesheet"
@@ -49,8 +50,65 @@
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </div>
-                <div class="content"></div>
+                <div class="content">
+                    <div class="title">
+                        <span>></span>
+                        <h1>Add new product page</h1>
+                    </div>
+                    <p class="noti danger">
+                        <span onclick="removeNotification()">x</span
+                        >&nbsp;&nbsp; Error occured!
+                    </p>
+                    <p class="noti success">
+                        <span onclick="removeNotification()">x</span
+                        >&nbsp;&nbsp; Action successfully
+                    </p>
+                    <form action="" method="post" class="new-product-form">
+                        <div class="form-content">
+                            <div class="form-group w-75">
+                                <label for="name">Product name: </label><br />
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    required
+                                    minlength="1"
+                                />
+                            </div>
+                            <div class="form-group w-25">
+                                <label for="price">Product price: </label><br />
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                    required
+                                    min="1"
+                                    pattern="[0-9]*[.,]?[0-9]+"
+                                />
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="description"
+                                    >Product description: </label
+                                ><br />
+                                <textarea
+                                    name="description"
+                                    id="description"
+                                    cols="30"
+                                    rows="10"
+                                ></textarea>
+                            </div>
+                            <div class="w-50">
+                                <button type="submit" class="btn success w-100">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>
+    <script src="./assets/javascript/newProductScript.js"></script>
 </html>
