@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
 body {
     margin: 0;
     padding: 0;
+    font-family: Poppins, sans-serif;
 }
 
 .container {
@@ -18,6 +21,55 @@ body {
     border-right: 1px solid black;
     top: 0;
     left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .sidebar .image-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.container .sidebar .image-text:not(.logo) {
+    background-color: white;
+    color: black;
+    font-size: 1.3rem;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+    -webkit-transition: color 0.5s ease-out;
+    -moz-transition: color 0.5s ease-out;
+    -o-transition: color 0.5s ease-out;
+    transition: color 0.5s ease-out;
+}
+
+.container .sidebar .image-text:not(.logo) > :first-child {
+    margin-left: 30px;
+}
+
+.container .sidebar .image-text:not(.logo):hover {
+    background-color: rgb(149, 12, 228);
+    color: white;
+}
+
+.container .sidebar .image-text.logo {
+    font-size: 1.2rem;
+}
+
+.container .sidebar .image-text .image img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+
+.container .sidebar .image-text .text p {
+    word-wrap: break-word;
 }
 
 .container .navbar {
@@ -28,4 +80,32 @@ body {
     right: 0;
     width: calc(80% - 1px);
     border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .navbar .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 25px;
+    font-size: 1.2rem;
+}
+
+.container .navbar .icon img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.container .navbar .logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgb(199, 14, 14);
+    cursor: pointer;
+    margin-right: 25px;
 }
