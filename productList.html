@@ -56,10 +56,61 @@
                             <span>New</span>
                         </button>
                     </div>
-                    <div class="product-table"></div>
-                    <div class="pagination"></div>
+                    <div class="product-table">
+                        <table border="1">
+                            <tr>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 50%">Name</th>
+                                <th style="width: 15%">Price</th>
+                                <th style="width: 30%">Action</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Product 1</td>
+                                <td>1000 USD</td>
+                                <td class="action">
+                                    <button class="btn info text-small">
+                                        View
+                                    </button>
+                                    <button class="btn primary text-small">
+                                        Edit
+                                    </button>
+                                    <button class="btn danger text-small">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <form id="page-switch" action="" method="get">
+                            <button
+                                class="btn secondary"
+                                type="button"
+                                onclick="handleDecreasePage()"
+                            >
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <div class="page-input">
+                                <input
+                                    type="number"
+                                    name="page"
+                                    min="1"
+                                    value="2"
+                                /><span>/10</span>
+                            </div>
+                            <button
+                                class="btn secondary"
+                                type="button"
+                                onclick="handleIncreasePage()"
+                            >
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
+    <script src="./assets/javascript/productListScript.js"></script>
 </html>
