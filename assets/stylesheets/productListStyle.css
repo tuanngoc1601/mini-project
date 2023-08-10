@@ -11,6 +11,7 @@ body {
     padding: 0;
     background-color: rgb(178, 180, 182);
     min-height: 100vh;
+    display: flex;
 }
 
 .container .sidebar {
@@ -108,4 +109,47 @@ body {
     color: rgb(199, 14, 14);
     cursor: pointer;
     margin-right: 25px;
+}
+
+.main-wrapper {
+    width: calc(80% - 1px);
+}
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+}
+
+.success {
+    background-color: rgb(19, 221, 19);
+    color: rgb(37, 36, 36);
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+    -webkit-transition: color 0.5s ease-out;
+    -moz-transition: color 0.5s ease-out;
+    -o-transition: color 0.5s ease-out;
+    transition: color 0.5s ease-out;
+}
+
+.success:hover {
+    background-color: rgb(7, 91, 7);
+    color: white;
+}
+
+.container .content {
+    margin-top: 5rem;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
