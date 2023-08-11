@@ -1,4 +1,8 @@
 <?php
+include './templates/header.php';
+?>
+
+<?php
 $filepath = realpath(dirname(__FILE__));
 include_once($filepath . '/app/controllers/productController.php');
 ?>

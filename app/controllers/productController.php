@@ -1,7 +1,5 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include($filepath.'/../../config/session.php');
-Session::checkLogin();
 include($filepath.'/../models/productModel.php');
 include($filepath.'/../helper/format.php');
 ?>
