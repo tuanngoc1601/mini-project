@@ -7,13 +7,12 @@
 }
 
 .container .detail .image {
-    width: 75%;
-    height: 30rem;
+    width: 50%;
 }
 
 .container .detail .image img {
-    width: 100%;
     object-fit: cover;
+    max-height: 30rem;
 }
 
 .container .detail .product-info {

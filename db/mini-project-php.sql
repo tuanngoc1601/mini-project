@@ -33,6 +33,13 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `products` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `price` float,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Dumping data for table `users`
 --

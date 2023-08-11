@@ -1,3 +1,16 @@
+<?php
+$filepath = realpath(dirname(__FILE__));
+include_once($filepath . '/app/controllers/productController.php');
+?>
+
+<?php
+$controller = new ProductController();
+$result = [];
+if (isset($_POST['name']) && $_POST['price']) {
+    $result = $controller->insertOne($_POST['name'], $_POST['price'], $_POST['description']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,9 +45,11 @@
                     <div class="image">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
-                    <div class="text">
-                        <p>Product list</p>
-                    </div>
+                    <a href="/productList.php">
+                        <div class="text">
+                            <p>Product list</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="main-wrapper">
@@ -55,14 +70,26 @@
                         <span>></span>
                         <h1>Add new product page</h1>
                     </div>
-                    <p class="noti danger">
-                        <span onclick="removeNotification()">x</span
-                        >&nbsp;&nbsp; Error occured!
-                    </p>
-                    <p class="noti success">
-                        <span onclick="removeNotification()">x</span
-                        >&nbsp;&nbsp; Action successfully
-                    </p>
+                    <?php 
+                    if (isset($result['success'])) {
+                        $success = $result['success'];
+                        echo "<p class='noti success'>
+                            <span onclick='removeNotification()'>x</span
+                            >&nbsp;&nbsp; $success
+                        </p>";
+                    }
+                    ?>
+                    <?php 
+                    if (isset($result['error'])) {
+                        $error = $result['error'];
+                        echo "<p class='noti danger'>
+                            <span onclick='removeNotification()'>x</span
+                            >&nbsp;&nbsp; $error
+                        </p>";
+                    }
+                    ?>
+                    
+                    
                     <form action="" method="post" class="new-product-form">
                         <div class="form-content">
                             <div class="form-group w-75">
@@ -84,7 +111,7 @@
                                     name="price"
                                     id="price"
                                     required
-                                    min="1"
+                                    min="0"
                                     pattern="[0-9]*[.,]?[0-9]+"
                                 />
                             </div>

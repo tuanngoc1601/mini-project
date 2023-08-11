@@ -1,3 +1,24 @@
+<?php
+$filepath = realpath(dirname(__FILE__));
+include_once($filepath . '/app/controllers/productController.php');
+?>
+
+<?php
+$controller = new ProductController();
+$currentPage = 1;
+if (isset($_GET['page'])) {
+    $currentPage = intval($_GET['page']);
+}
+$data = $controller->getAll($currentPage - 1);
+$totalPages = 1;
+$products = [];
+if (!isset($data['error'])) {
+    $totalPages = $data['totalPages'];
+    $products = $data['products'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,9 +53,11 @@
                     <div class="image">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
-                    <div class="text">
-                        <p>Product list</p>
-                    </div>
+                    <a href="/productList.php">
+                        <div class="text">
+                            <p>Product list</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="main-wrapper">
@@ -56,10 +79,12 @@
                         <h1>Product list page</h1>
                     </div>
                     <div class="new">
-                        <button class="btn success">
-                            <i class="fa-solid fa-circle-plus"></i>
-                            <span>New</span>
-                        </button>
+                        <a href="/newProduct.php">
+                            <button class="btn success">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                <span>New</span>
+                            </button>
+                        </a>
                     </div>
                     <div class="product-table">
                         <table border="1">
@@ -69,22 +94,25 @@
                                 <th style="width: 15%">Price</th>
                                 <th style="width: 30%">Action</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Product 1</td>
-                                <td>1000 USD</td>
-                                <td class="action">
-                                    <button class="btn info text-small">
-                                        View
-                                    </button>
-                                    <button class="btn primary text-small">
-                                        Edit
-                                    </button>
-                                    <button class="btn danger text-small">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php
+                            if (!empty($products)) {
+                                foreach ($products as $product) {
+                                    $id = $product[0];
+                                    $name = $product[1];
+                                    $price = $product[2];
+                                    echo "<tr>
+                                    <td> $id </td>
+                                    <td> $name </td>
+                                    <td> $price </td>
+                                    <td class='action'>
+                                        <a href='/productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
+                                        <button class='btn primary text-small'>Edit</button>
+                                        <button class='btn danger text-small'>Delete</button>
+                                    </td>
+                                    </tr>";
+                                }
+                            }
+                            ?>
                         </table>
                     </div>
                     <div class="pagination">
@@ -101,8 +129,9 @@
                                     type="number"
                                     name="page"
                                     min="1"
-                                    value="2"
-                                /><span>/10</span>
+                                    max="<?php echo $totalPages ?>"
+                                    value="<?php echo $currentPage ?>"
+                                /><span>/<?php echo $totalPages ?></span>
                             </div>
                             <button
                                 class="btn secondary"

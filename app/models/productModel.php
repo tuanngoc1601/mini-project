@@ -4,7 +4,7 @@ include($filepath . '/../../config/database.php');
 ?>
 
 <?php
-class userModel
+class ProductModel
 {
     private $db;
 
@@ -13,12 +13,15 @@ class userModel
         $this->db = new Database();
     }
 
-    public function getAll()
+    public function getAll($offset = 0, $limit = 20)
     {
-        $query = "SELECT * FROM products";
-        $result = $this->db->select($query);
+        $queryProducts = "SELECT * FROM products LIMIT $limit OFFSET $offset";
+        $products = $this->db->select($queryProducts);
 
-        return $result;
+        $queryCount = "SELECT COUNT(*) FROM products";
+        $count = $this->db->select($queryCount);
+
+        return ['products' => $products, 'count' => $count];
     }
 
     public function getOne($id) {
@@ -26,6 +29,16 @@ class userModel
         $query = "SELECT * FROM products WHERE id = $id LIMIT 1";
         $result = $this->db->select($query);
 
+        return $result;
+    }
+
+    public function insert($name, $price, $description) {
+        $name = mysqli_real_escape_string($this->db->link, $name);
+        $price = mysqli_real_escape_string($this->db->link, $price);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $query = "INSERT INTO products(name, price, description) VALUES ('$name', '$price', '$description')"; 
+        $result = $this->db->insert($query);
+        
         return $result;
     }
 }
