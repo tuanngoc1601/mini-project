@@ -83,7 +83,7 @@ if (!isset($data['error'])) {
                         <h1>Product list page</h1>
                     </div>
                     <div class="new">
-                        <a href="/newProduct.php">
+                        <a href="./newProduct.php">
                             <button class="btn success">
                                 <i class="fa-solid fa-circle-plus"></i>
                                 <span>New</span>
@@ -109,8 +109,8 @@ if (!isset($data['error'])) {
                                     <td> $name </td>
                                     <td> $price </td>
                                     <td class='action'>
-                                        <a href='/productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
-                                        <button class='btn primary text-small'>Edit</button>
+                                        <a href='./productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
+                                        <a href='./editProduct.php?id=$id'><button class='btn primary text-small'>Edit</button></a>
                                         <button class='btn danger text-small'>Delete</button>
                                     </td>
                                     </tr>";

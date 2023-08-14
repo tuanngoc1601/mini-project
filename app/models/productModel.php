@@ -41,5 +41,16 @@ class ProductModel
         
         return $result;
     }
+
+    public function update($name, $price, $description, $id) {
+        $name = mysqli_real_escape_string($this->db->link, $name);
+        $price = mysqli_real_escape_string($this->db->link, $price);
+        $description = mysqli_real_escape_string($this->db->link, $description);
+        $query = "UPDATE products SET `name` = '" .$name. "', `price` = '" .$price. "', `description` = '" .$description. "' 
+                WHERE `products`.`id` = '" .$id. "' "; 
+        $result = $this->db->update($query);
+        
+        return $result;
+    }
 }
 ?>
