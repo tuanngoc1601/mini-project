@@ -107,9 +107,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                     <td> $name </td>
                                     <td> $price </td>
                                     <td class='action'>
-                                        <a href='/mini-project/productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
-                                        <button class='btn primary text-small'>Edit</button>
-                                        <button class='btn danger text-small'>Delete</button>
+                                        <a href='./productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
+                                        <a href='./editProduct.php?id=$id'><button class='btn primary text-small'>Edit</button></a>
+                                        <a href='./deleteProduct.php?id=$id'><button class='btn danger text-small'>Delete</button></a>
                                     </td>
                                     </tr>";
                             }

@@ -11,3 +11,5 @@ function handleDecreasePage() {
     page.value = Number(page.value) - 1;
     form.submit();
 }
+
+

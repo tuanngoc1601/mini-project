@@ -58,5 +58,31 @@ class ProductController
             return ['error' => "Product added failed"];
         }
     }
+
+    public function update($name, $price, $description, $id) {
+        Session::checkLogin();
+        $namePattern = '/^[a-zA-Z0-9\s]{1,255}$/';
+        if (!preg_match($namePattern, $name)) {
+            return ["error" => "Name must contain only alphanumeric characters and spaces. Length is from 1 to 255 characters"];
+        }
+        if (!is_numeric($price) || floatval($price) < 0) {
+            return ["error" => "Price must be a positive number"];
+        }
+        $data = $this->model->update($name, floatval($price), $description, $id);
+        if ($data != false) {
+            return ['success' => "Product successfully updated"];
+        } else {
+            return ['error' => "Product update failed"];
+        }
+    }
+
+    public function delete($id) {
+        $data = $this->model->delete($id);
+        if ($data != false) {
+            return ['success' => "Product successfully deleted"];
+        } else {
+            return ['error' => "Delete product failed"];
+        }
+    }
 }
 ?>
