@@ -47,7 +47,7 @@ class Session
     {
         self::init();
         if (self::get("user_login") == true) {
-            header("Location:index.php");
+            header("Location:productList.php");
         }
     }
 

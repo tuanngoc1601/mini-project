@@ -31,7 +31,7 @@ class userController
             // gọi function Checklogin để kiểm tra true.
             Session::set('user_id', $value['id']);
             Session::set('name', $value['username']);
-            header("Location:index.php");
+            header("Location:productList.php");
         } else {
             $alert = "User and Pass not match";
             return $alert;
