@@ -75,5 +75,14 @@ class ProductController
             return ['error' => "Product update failed"];
         }
     }
+
+    public function delete($id) {
+        $data = $this->model->delete($id);
+        if ($data != false) {
+            return ['success' => "Product successfully deleted"];
+        } else {
+            return ['error' => "Delete product failed"];
+        }
+    }
 }
 ?>

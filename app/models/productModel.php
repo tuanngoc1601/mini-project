@@ -52,5 +52,12 @@ class ProductModel
         
         return $result;
     }
+
+    public function delete($id) {
+        $query = "DELETE FROM `products` WHERE `id` =  '" .$id. "' "; 
+        $result = $this->db->delete($query);
+        
+        return $result;
+    }
 }
 ?>
