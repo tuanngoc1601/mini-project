@@ -7,11 +7,25 @@ include_once($filepath . '/app/controllers/userController.php');
 $user = new userController();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // LẤY DỮ LIỆU TỪ PHƯƠNG THỨC Ở FORM POST
+    $error = ["username" => "", "password" => ""];
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
-    $login_check = $user->login($username, $password); // hàm check User and Pass khi submit lên
+    if(empty($username)) {
+        $error["username"] = "This field cannot be left blank";
+    }
+    if(empty($password)) {
+        $error["password"] = "This field cannot be left blank";
+    } else if(strlen($password) < 6) {
+        $error["password"] = "Minimum 6 characters required";
+    }
 
+    if($error["username"] == "" && $error["password"] == "") {
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+
+        $login_check = $user->login($username, $password); // hàm check User and Pass khi submit lên
+    }
 }
 ?>
 
@@ -37,11 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </span>
                 <div class="form-group">
                     <label for="username">Username: </label><br />
-                    <input class="form-control" type="text" placeholder="Username" required="" name="username" />
+                    <input class="form-control" type="text" placeholder="Username" name="username"/>
+                    <?php if (isset($error)) {?>
+                        <span style="color: red; font-size: 17px;"><?=$error["username"]?></span>
+                    <?php } ?>    
                 </div>
                 <div class="form-group">
                     <label for="password">Password: </label><br />
-                    <input class="form-control" type="password" placeholder="Password" required="" name="password" />
+                    <input class="form-control" type="password" placeholder="Password" name="password"/>
+                    <?php if (isset($error)) {?>
+                        <span style="color: red; font-size: 17px;"><?=$error["password"]?></span>
+                    <?php } ?>
                 </div>
                 <div class="form-group remember">
                     <input type="checkbox" name="remember" />

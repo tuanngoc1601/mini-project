@@ -51,7 +51,7 @@ $controller = new ProductController();
                     <div class="image">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
-                    <a href="/productList.php">
+                    <a href="/mini-project/productList.php">
                         <div class="text">
                             <p>Product list</p>
                         </div>
