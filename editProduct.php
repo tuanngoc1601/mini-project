@@ -144,7 +144,7 @@ if (isset($_POST['name']) && $_POST['price']) {
                                 ><?php echo $product['description'] ?></textarea>
                             </div>
                             <div class="w-50">
-                                <button type="submit" class="btn info w-100">
+                                <button type="submit" class="btn primary w-100">
                                     update
                                 </button>
                             </div>

@@ -94,8 +94,9 @@ $controller = new ProductController();
                         </p>";
                     }
                     ?>
-                    
-                    
+                    <div class="content">
+                        <a href='/mini-project/productList.php'><button class='btn secondary'>Back to home</button></a>
+                    </div>
                 </div>
             </div>
         </div>
