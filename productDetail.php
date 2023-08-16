@@ -104,7 +104,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                             <p>$description</p>
                                         </div>
                                         <div class='action'>
-                                            <button class='btn primary'>Edit</button>
+                                            <a href='/mini-project/editProduct.php?id=$id'><button class='btn primary'>Edit</button></a>
                                             <a href='/mini-project/productList.php'><button class='btn secondary'>Cancel</button></a>
                                         </div>
                                 </div>";
