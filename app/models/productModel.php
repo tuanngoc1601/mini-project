@@ -1,9 +1,10 @@
 <?php
-$filepath = realpath(dirname(__FILE__));
-include($filepath . '/../../config/database.php');
+    $filepath = realpath(dirname(__FILE__));
+    include($filepath . '/../../config/database.php');
 ?>
 
 <?php
+
 class ProductModel
 {
     private $db;
@@ -24,40 +25,36 @@ class ProductModel
         return ['products' => $products, 'count' => $count];
     }
 
-    public function getOne($id) {
+    public function getOne($id)
+    {
         $id = mysqli_real_escape_string($this->db->link, $id);
         $query = "SELECT * FROM products WHERE id = $id LIMIT 1";
-        $result = $this->db->select($query);
-
-        return $result;
+        return $this->db->select($query);
     }
 
-    public function insert($name, $price, $description) {
+    public function insert($name, $price, $description)
+    {
         $name = mysqli_real_escape_string($this->db->link, $name);
         $price = mysqli_real_escape_string($this->db->link, $price);
         $description = mysqli_real_escape_string($this->db->link, $description);
-        $query = "INSERT INTO products(name, price, description) VALUES ('$name', '$price', '$description')"; 
-        $result = $this->db->insert($query);
-        
-        return $result;
+        $query = "INSERT INTO products(name, price, description) VALUES ('$name', '$price', '$description')";
+        return $this->db->insert($query);
     }
 
-    public function update($name, $price, $description, $id) {
+    public function update($name, $price, $description, $id)
+    {
         $name = mysqli_real_escape_string($this->db->link, $name);
         $price = mysqli_real_escape_string($this->db->link, $price);
         $description = mysqli_real_escape_string($this->db->link, $description);
-        $query = "UPDATE products SET `name` = '" .$name. "', `price` = '" .$price. "', `description` = '" .$description. "' 
-                WHERE `products`.`id` = '" .$id. "' "; 
-        $result = $this->db->update($query);
-        
-        return $result;
+        $query = "UPDATE products SET `name` = '{$name}', `price` = '{$price}', `description` = '{$description}' 
+                WHERE `products`.`id` = '{$id}' "; 
+        return $this->db->update($query);
     }
 
-    public function delete($id) {
-        $query = "DELETE FROM `products` WHERE `id` =  '" .$id. "' "; 
-        $result = $this->db->delete($query);
-        
-        return $result;
+    public function delete($id)
+    {
+        $query = "DELETE FROM `products` WHERE `id` =  '{$id}' ";
+        return $this->db->delete($query);
     }
 }
 ?>

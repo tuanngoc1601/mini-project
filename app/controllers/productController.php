@@ -1,9 +1,8 @@
 <?php
-$filepath = realpath(dirname(__FILE__));
-include($filepath.'/../models/productModel.php');
-include($filepath.'/../helper/format.php');
+    $filepath = realpath(dirname(__FILE__));
+    include($filepath . '/../models/productModel.php');
+    include($filepath . '/../../helper/format.php');
 ?>
-
 <?php
 class ProductController
 {
@@ -16,16 +15,16 @@ class ProductController
         $this->fm = new Format();
     }
 
-    public function getAll($page = 0, $limit = 20) {
-        $data = $this->model->getAll($page*$limit, $limit);
-        if ($data['products'] != false && $data['count'] != false) {
+    public function getAll($page = 0, $limit = 20)
+    {
+        $data = $this->model->getAll($page * $limit, $limit);
+        if ($data['products'] && $data['count']) {
             $products = $data['products']->fetch_all();
             $count = $data['count']->fetch_assoc()["COUNT(*)"];
-            $totalPages = 1;
             if ($count % $limit == 0) {
-                $totalPages = intval($count/$limit);
+                $totalPages = intval($count / $limit);
             } else {
-                $totalPages = intval($count/$limit) + 1;
+                $totalPages = intval($count / $limit) + 1;
             }
             return ['products' => $products, 'totalPages' => $totalPages];
         } else {
@@ -33,16 +32,14 @@ class ProductController
         }
     }
 
-    public function getOne($id) {
+    public function getOne($id)
+    {
         $data = $this->model->getOne($id);
-        if ($data != false) {
-            return ['product' => $data->fetch_assoc()];
-        } else {
-            return ['error' => 'No product found'];
-        }
+        return $data ? ['product' => $data->fetch_assoc()] : ['error' => 'No product found'];
     }
 
-    public function insertOne($name, $price, $description) {
+    public function insertOne($name, $price, $description)
+    {
         Session::checkLogin();
         $namePattern = '/^[a-zA-Z0-9\s]{1,255}$/';
         if (!preg_match($namePattern, $name)) {
@@ -52,14 +49,11 @@ class ProductController
             return ["error" => "Price must be a positive number"];
         }
         $data = $this->model->insert($name, floatval($price), $description);
-        if ($data != false) {
-            return ['success' => "Product successfully added"];
-        } else {
-            return ['error' => "Product added failed"];
-        }
+        return $data ? ['success' => "Product successfully added"] : ['error' => "Product added failed"];
     }
 
-    public function update($name, $price, $description, $id) {
+    public function update($name, $price, $description, $id)
+    {
         Session::checkLogin();
         $namePattern = '/^[a-zA-Z0-9\s]{1,255}$/';
         if (!preg_match($namePattern, $name)) {
@@ -69,20 +63,14 @@ class ProductController
             return ["error" => "Price must be a positive number"];
         }
         $data = $this->model->update($name, floatval($price), $description, $id);
-        if ($data != false) {
-            return ['success' => "Product successfully updated"];
-        } else {
-            return ['error' => "Product update failed"];
-        }
+        return $data ? ['success' => "Product successfully updated"] : ['error' => "Product update failed"];
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $data = $this->model->delete($id);
-        if ($data != false) {
-            return ['success' => "Product successfully deleted"];
-        } else {
-            return ['error' => "Delete product failed"];
-        }
+        return $data ? ['success' => "Product successfully deleted"] : ['error' => "Delete product failed"];
     }
 }
+
 ?>

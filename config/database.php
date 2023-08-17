@@ -3,11 +3,12 @@ $filepath = realpath(dirname(__FILE__));
 include($filepath . '/db.php'); ?>
 
 <?php
+
 class Database extends PDO
 {
-    public $host   = DB_HOST;
-    public $user   = DB_USER;
-    public $pass   = DB_PASS;
+    public $host = DB_HOST;
+    public $user = DB_USER;
+    public $pass = DB_PASS;
     public $dbname = DB_NAME;
 
 
@@ -37,7 +38,7 @@ class Database extends PDO
     public function select($query)
     {
         $result = $this->link->query($query) or
-            die($this->link->error . __LINE__);
+        die($this->link->error . __LINE__);
         if ($result->num_rows > 0) {
             return $result;
         } else {

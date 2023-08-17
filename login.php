@@ -21,10 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if($error["username"] == "" && $error["password"] == "") {
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-
-        $login_check = $user->login($username, $password); // hàm check User and Pass khi submit lên
+        // hàm check User and Pass khi submit lên
+        $login_check = $user->login($_POST['username'],  md5($_POST['password'])); 
     }
 }
 ?>
