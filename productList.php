@@ -55,7 +55,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="image">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <a href="/mini-project/productList.php">
+                <a href="./productList.php">
                     <div class="text">
                         <p>Product list</p>
                     </div>
@@ -81,7 +81,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                     <h1>Product list page</h1>
                 </div>
                 <div class="new">
-                    <a href="/mini-project/newProduct.php" style="display: inline-block;">
+                    <a href="./newProduct.php" style="display: inline-block;">
                         <button class="btn success">
                             <i class="fa-solid fa-circle-plus"></i>
                             <span>New</span>

@@ -8,6 +8,10 @@ include_once($filepath . '/app/controllers/productController.php');
 ?>
 
 <?php
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    Session::destroy();
+}
+
 //get data
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -60,7 +64,7 @@ if (isset($_POST['name']) && $_POST['price']) {
                     <div class="image">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
-                    <a href="/mini-project/productList.php">
+                    <a href="./productList.php">
                         <div class="text">
                             <p>Product list</p>
                         </div>
@@ -68,18 +72,18 @@ if (isset($_POST['name']) && $_POST['price']) {
                 </div>
             </div>
             <div class="main-wrapper">
-                <div class="navbar">
-                    <div class="icon">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                            alt="user"
-                        />
-                        <p>Test user</p>
-                    </div>
-                    <div class="logout">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </div>
+            <div class="navbar">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user" />
+                    <?php
+                        $name = Session::get("name");
+                        echo "<p>$name</p>";
+                    ?>
                 </div>
+                <div class="logout">
+                    <a href="?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+            </div>
                 <div class="content">
                     <div class="title">
                         <span>></span>

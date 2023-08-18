@@ -53,7 +53,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="image">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <a href="/mini-project/productList.php">
+                <a href="./productList.php">
                     <div class="text">
                         <p>Product list</p>
                     </div>
@@ -104,8 +104,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                             <p>$description</p>
                                         </div>
                                         <div class='action'>
-                                            <a href='/mini-project/editProduct.php?id=$id'><button class='btn primary'>Edit</button></a>
-                                            <a href='/mini-project/productList.php'><button class='btn secondary'>Cancel</button></a>
+                                            <a href='./editProduct.php?id=$id'><button class='btn primary'>Edit</button></a>
+                                            <a href='./productList.php'><button class='btn secondary'>Cancel</button></a>
                                         </div>
                                 </div>";
                     } else {
