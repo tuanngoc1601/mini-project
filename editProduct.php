@@ -120,7 +120,7 @@ if (isset($_POST['name']) && $_POST['price']) {
                                     id="name"
                                     required
                                     minlength="1"
-                                    value=<?= $product['name'] ?>
+                                    value="<?= $product['name'] ?>"
                                 />
                             </div>
                             <div class="form-group w-25">
