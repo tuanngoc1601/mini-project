@@ -2,6 +2,7 @@
     $filepath = realpath(dirname(__FILE__));
     include($filepath . '/../config/session.php');
     Session::checkSession();
+    Session::checkLogin();
 ?>
 
 <?php
