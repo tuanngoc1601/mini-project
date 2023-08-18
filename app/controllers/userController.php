@@ -18,7 +18,7 @@ class userController
         $this->fm = new Format();
     }
 
-    public function login($username, $password)
+    public function login($username, $password, $remember)
     {
         $username = $this->fm->validation($username); //gọi ham validation từ file Format để ktra
         $password = $this->fm->validation($password);
@@ -31,6 +31,11 @@ class userController
             // gọi function Checklogin để kiểm tra true.
             Session::set('user_id', $value['id']);
             Session::set('name', $value['username']);
+            if ($remember) {
+                setcookie('user_login', true, time() + (86400 * 30), "/");
+                setcookie('user_id', $value['id'], time() + (86400 * 30), "/");
+                setcookie('name', $value['username'], time() + (86400 * 30), "/");
+            }
             header("Location:productList.php");
         } else {
             $alert = "User and Pass not match";

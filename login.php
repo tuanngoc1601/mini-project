@@ -23,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($error["username"] == "" && $error["password"] == "") {
         $username = $_POST['username'];
         $password = md5($_POST['password']);
+        $remember = isset($_POST['remember']);
 
-        $login_check = $user->login($username, $password); // hàm check User and Pass khi submit lên
+        $login_check = $user->login($username, $password, $remember); // hàm check User and Pass khi submit lên
     }
 }
 ?>
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php } ?>
                 </div>
                 <div class="form-group remember">
-                    <input type="checkbox" name="remember" />
+                    <input type="checkbox" name="remember" value="remember" />
                     <label for="remember">Remember me?</label>
                 </div>
                 <div class="form-group">

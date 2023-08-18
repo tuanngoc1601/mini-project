@@ -46,7 +46,7 @@ class Session
     public static function checkLogin()
     {
         self::init();
-        if (self::get("user_login") == true && $_SERVER['SCRIPT_NAME'] !== "/productList.php") {
+        if (self::get("user_login") == true && ($_SERVER['SCRIPT_NAME'] == "/login.php" || $_SERVER['SCRIPT_NAME'] == "/index.php")) {
             header("Location:productList.php");
         }
     }
@@ -54,6 +54,9 @@ class Session
     public static function destroy()
     {
         session_destroy();
+        setcookie("user_login", "", time() - 3600);
+        setcookie("user_id", "", time() - 3600);
+        setcookie('name', "", time() - 3600);
         header("Location:login.php");
     }
     // xóa or hủy phiên làm việc

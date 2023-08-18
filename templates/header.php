@@ -1,6 +1,18 @@
 <?php 
+    session_start();
     $filepath = realpath(dirname(__FILE__));
     include($filepath . '/../config/session.php');
+    if (isset($_COOKIE['user_id'])) {
+        Session::set('user_id', $_COOKIE['user_id']);
+    }
+
+    if (isset($_COOKIE['name'])) {
+        Session::set('name', $_COOKIE['name']);
+    }
+    
+    if (isset($_COOKIE['user_login'])) {
+        Session::set('user_login', $_COOKIE['user_login']);
+    }
     Session::checkSession();
     Session::checkLogin();
 ?>
