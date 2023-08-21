@@ -42,5 +42,19 @@ class userController
             return $alert;
         }
     }
+
+    public function register($username, $password) {
+        $username = $this->fm->validation($username); //gọi ham validation từ file Format để ktra
+        $password = $this->fm->validation($password);
+
+        $result = $this->model->register_user($username, $password);
+        
+        if ($result != false) {
+            header("Location:login.php");
+        } else {
+            $alert = "Cannot registration";
+            return $alert;
+        }
+    }
 }
 ?>

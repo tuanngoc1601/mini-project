@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = md5($_POST['password']);
         $remember = isset($_POST['remember']);
 
-        $login_check = $user->login($username, $password, $remember); // hàm check User and Pass khi submit lên
+        $register_check = $user->register($username, $password); // hàm check User and Pass khi submit lên
     }
 }
 ?>
@@ -41,12 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <section id="content">
-            <form action="login.php" method="post">
-                <h1>LOGIN</h1>
+            <form action="register.php" method="post">
+                <h1>REGISTER</h1>
                 <span>
                     <?php
-                    if (isset($login_check)) {
-                        echo $login_check;
+                    if (isset($register_check)) {
+                        echo $register_check;
                     }
                     ?>
                 </span>
@@ -64,15 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span style="color: red; font-size: 17px;"><?=$error["password"]?></span>
                     <?php } ?>
                 </div>
-                <div class="form-group remember">
-                    <input type="checkbox" name="remember" value="remember" />
-                    <label for="remember">Remember me?</label>
-                </div>
                 <div class="form-group">
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Register" />
                 </div>
-                <div style="text-align: center; font-size: 1.2rem;">
-                    <a href="./register.php">Register now!</a>
+                <div>
+                    <a href="./login.php">
+                        <button class="btn info" type="button">Back to login</button>
+                    </a>
                 </div>
             </form><!-- form -->
         </section><!-- content -->

@@ -23,5 +23,14 @@ class userModel
 
         return $result;
     }
+
+    public function register_user($username, $password) {
+        $username = mysqli_real_escape_string($this->db->link, $username);
+        $password = mysqli_real_escape_string($this->db->link, $password);
+        $query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+        $result = $this->db->insert($query);
+
+        return $result;
+    }
 }
 ?>
