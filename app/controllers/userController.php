@@ -36,7 +36,7 @@ class userController
                 setcookie('user_id', $value['id'], time() + (86400 * 30), "/");
                 setcookie('name', $value['username'], time() + (86400 * 30), "/");
             }
-            header("Location:productList.php");
+            header("Location:index.php");
         } else {
             $alert = "User and Pass not match";
             return $alert;

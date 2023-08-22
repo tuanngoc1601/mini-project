@@ -2,10 +2,11 @@
 $filepath = realpath(dirname(__FILE__));
 include($filepath.'/../models/productModel.php');
 include($filepath.'/../helper/format.php');
+include($filepath.'/../app/controllers/baseController.php');
 ?>
 
 <?php
-class ProductController
+class ProductController extends BaseController
 {
     private $model;
     private $fm;
@@ -14,6 +15,24 @@ class ProductController
     {
         $this->model = new ProductModel();
         $this->fm = new Format();
+        $this->folder = 'product';
+    }
+
+    public function list($page = 0, $limit = 20) {
+        $data = $this->model->getAll($page*$limit, $limit);
+        if ($data['products'] != false && $data['count'] != false) {
+            $products = $data['products']->fetch_all();
+            $count = $data['count']->fetch_assoc()["COUNT(*)"];
+            $totalPages = 1;
+            if ($count % $limit == 0) {
+                $totalPages = intval($count/$limit);
+            } else {
+                $totalPages = intval($count/$limit) + 1;
+            }
+            return $this->render('list', ['products' => $products, 'totalPages' => $totalPages]);
+        } else {
+            return ['error' => 'No products found'];
+        }
     }
 
     public function getAll($page = 0, $limit = 20) {
@@ -41,6 +60,7 @@ class ProductController
             return ['error' => 'No product found'];
         }
     }
+
 
     public function insertOne($name, $price, $description) {
         Session::checkLogin();

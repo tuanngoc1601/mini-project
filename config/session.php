@@ -46,8 +46,8 @@ class Session
     public static function checkLogin()
     {
         self::init();
-        if (self::get("user_login") == true && ($_SERVER['SCRIPT_NAME'] == "/login.php" || $_SERVER['SCRIPT_NAME'] == "/index.php")) {
-            header("Location:productList.php");
+        if (self::get("user_login") == true && ($_SERVER['SCRIPT_NAME'] == "/login.php")) {
+            header("Location:index.php");
         }
     }
 
