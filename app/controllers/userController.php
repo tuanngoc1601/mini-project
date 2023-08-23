@@ -1,13 +1,14 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include($filepath.'/../../config/session.php');
-Session::checkLogin();
+// include($filepath.'/../../config/session.php');
+// Session::checkLogin();
 include($filepath.'/../models/userModel.php');
 include($filepath.'/../helper/format.php');
+include($filepath.'/../app/controllers/baseController.php');
 ?>
 
 <?php
-class userController
+class UserController extends BaseController
 {
     private $model;
     private $fm;
@@ -16,10 +17,23 @@ class userController
     {
         $this->model = new userModel();
         $this->fm = new Format();
+        $this->folder = 'auth';
     }
 
-    public function login($username, $password, $remember)
+    public function viewLogin() {
+        $this->render('login');
+    }
+
+    public function viewRegister() {
+        $this->render('register');
+    }
+
+    public function login()
     {
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+        $remember = isset($_POST['remember']);
+
         $username = $this->fm->validation($username); //gọi ham validation từ file Format để ktra
         $password = $this->fm->validation($password);
 
@@ -38,22 +52,23 @@ class userController
             }
             header("Location:index.php");
         } else {
-            $alert = "User and Pass not match";
-            return $alert;
+            return $this->render('login', ['login_check' => "User and Pass not match"]);
         }
     }
 
-    public function register($username, $password) {
+    public function register() {
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+
         $username = $this->fm->validation($username); //gọi ham validation từ file Format để ktra
         $password = $this->fm->validation($password);
 
         $result = $this->model->register_user($username, $password);
         
         if ($result != false) {
-            header("Location:login.php");
+            header("Location:/?controller=user&action=viewLogin");
         } else {
-            $alert = "Cannot registration";
-            return $alert;
+            return $this->render('login', ['register_check' => "Cannot registration"]);
         }
     }
 }

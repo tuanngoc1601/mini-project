@@ -37,17 +37,17 @@ class Session
     public static function checkSession()
     {
         self::init();
-        if (self::get("user_login") == false) {
+        if (self::get("user_login") == false && $_GET['controller'] != 'user') {
             self::destroy();
-            header("Location:login.php");
+            header("Location:/?controller=user&action=viewLogin");
         }
     }
     //check phiên làm việc có tồn tại hay không
     public static function checkLogin()
     {
         self::init();
-        if (self::get("user_login") == true && ($_SERVER['SCRIPT_NAME'] == "/login.php")) {
-            header("Location:index.php");
+        if (self::get("user_login") == true ) {
+            header("Location:/?controller=product&action=list");
         }
     }
 

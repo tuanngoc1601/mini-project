@@ -2,7 +2,7 @@
 // danh sách các routes
 $controllers = array(
   'product' => ['list', 'edit','delete','add','error','detail',],
-  'user' => ['login','register']
+  'user' => ['login','register', 'viewLogin','viewRegister']
 );
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

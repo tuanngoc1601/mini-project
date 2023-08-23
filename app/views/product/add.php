@@ -7,7 +7,7 @@
 
 <?php
 $filepath = realpath($_SERVER["DOCUMENT_ROOT"]);
-include_once($filepath . '/mini-project/app/controllers/productController.php');
+include_once($filepath . '/app/controllers/productController.php');
 ?>
 
 <?php
