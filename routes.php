@@ -1,7 +1,7 @@
 <?php
 // danh sách các routes
 $controllers = array(
-  'product' => ['list', 'edit','delete','add','error'],
+  'product' => ['list', 'edit','delete','add','error','detail',],
   'user' => ['login','register']
 );
 

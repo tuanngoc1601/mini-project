@@ -35,22 +35,32 @@ class ProductController extends BaseController
         }
     }
 
-    public function getAll($page = 0, $limit = 20) {
-        $data = $this->model->getAll($page*$limit, $limit);
-        if ($data['products'] != false && $data['count'] != false) {
-            $products = $data['products']->fetch_all();
-            $count = $data['count']->fetch_assoc()["COUNT(*)"];
-            $totalPages = 1;
-            if ($count % $limit == 0) {
-                $totalPages = intval($count/$limit);
+        public function getAll($page = 0, $limit = 20) {
+            $data = $this->model->getAll($page*$limit, $limit);
+            if ($data['products'] != false && $data['count'] != false) {
+                $products = $data['products']->fetch_all();
+                $count = $data['count']->fetch_assoc()["COUNT(*)"];
+                $totalPages = 1;
+                if ($count % $limit == 0) {
+                    $totalPages = intval($count/$limit);
+                } else {
+                    $totalPages = intval($count/$limit) + 1;
+                }
+                return ['products' => $products, 'totalPages' => $totalPages];
             } else {
-                $totalPages = intval($count/$limit) + 1;
+                return ['error' => 'No products found'];
             }
-            return ['products' => $products, 'totalPages' => $totalPages];
-        } else {
-            return ['error' => 'No products found'];
         }
-    }
+
+
+    public function detail()
+    {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+        }
+        $data = $this->model->getOne($id);
+        return $this->render('detail', ['product' => $data->fetch_assoc()]);
+    }    
 
     public function getOne($id) {
         $data = $this->model->getOne($id);
@@ -61,6 +71,10 @@ class ProductController extends BaseController
         }
     }
 
+    public function add() 
+    {
+        return $this->render('add');
+    }
 
     public function insertOne($name, $price, $description) {
         Session::checkLogin();
@@ -77,6 +91,14 @@ class ProductController extends BaseController
         } else {
             return ['error' => "Product added failed"];
         }
+    }
+
+    public function edit() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+        }
+        $data = $this->model->getOne($id);
+        return $this->render('edit', ['product' => $data->fetch_assoc()]);
     }
 
     public function update($name, $price, $description, $id) {

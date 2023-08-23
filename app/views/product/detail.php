@@ -1,24 +1,23 @@
 <?php
-include './templates/header.php';
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+    header("Cache-Control: max-age=2592000");
 ?>
 
 <?php
-$filepath = realpath(dirname(__FILE__));
-include_once($filepath . '/app/controllers/productController.php');
+$filepath = realpath($_SERVER["DOCUMENT_ROOT"]);
+include_once($filepath . '/mini-project/app/controllers/productController.php');
 ?>
 
 <?php
-$id = 1;
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 }
-$controller = new ProductController();
-$data = $controller->getOne($id);
 $product = NULL;
 if (!isset($data['error'])) {
     $product = $data['product'];
 }
-
 ?>
 
 <?php
@@ -53,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="image">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <a href="./productList.php">
+                <a href="./index.php">
                     <div class="text">
                         <p>Product list</p>
                     </div>
@@ -104,8 +103,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                             <p>$description</p>
                                         </div>
                                         <div class='action'>
-                                            <a href='./editProduct.php?id=$id'><button class='btn primary'>Edit</button></a>
-                                            <a href='./productList.php'><button class='btn secondary'>Cancel</button></a>
+                                            <a href='./?controller=product&action=edit&id=$id'><button class='btn primary'>Edit</button></a>
+                                            <a href='./index.php'><button class='btn secondary'>Cancel</button></a>
                                         </div>
                                 </div>";
                     } else {

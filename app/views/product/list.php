@@ -50,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="image">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <a href="./productList.php">
+                <a href="./index.php">
                     <div class="text">
                         <p>Product list</p>
                     </div>
@@ -75,14 +75,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                     <span>></span>
                     <h1>Product list page</h1>
                 </div>
-                <div class="new">
-                    <a href="./newProduct.php" style="display: inline-block;">
+                <form action="?controller=product&action=add" method="post" class="new">
+                    <a href="" style="display: inline-block;">
                         <button class="btn success">
                             <i class="fa-solid fa-circle-plus"></i>
                             <span>New</span>
                         </button>
                     </a>
-                </div>
+                </form>
                 <div class="product-table">
                     <table border="1">
                         <tr>
@@ -102,8 +102,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                     <td> $name </td>
                                     <td> $price </td>
                                     <td class='action'>
-                                        <a href='./productDetail.php?id=$id'><button class='btn info text-small'>View</button></a>
-                                        <a href='./editProduct.php?id=$id'><button class='btn primary text-small'>Edit</button></a>
+                                        <a href='./?controller=product&action=detail&id=$id'><button class='btn info text-small'>View</button></a>
+                                        <a href='./?controller=product&action=edit&id=$id'><button class='btn primary text-small'>Edit</button></a>
                                         <a href='./deleteProduct.php?id=$id'><button class='btn danger text-small'>Delete</button></a>
                                     </td>
                                     </tr>";

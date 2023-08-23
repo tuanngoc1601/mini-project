@@ -55,7 +55,7 @@ $controller = new ProductController();
                     <div class="image">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
-                    <a href="./productList.php">
+                    <a href="./index.php">
                         <div class="text">
                             <p>Product list</p>
                         </div>
@@ -99,7 +99,7 @@ $controller = new ProductController();
                     }
                     ?>
                     <div class="content">
-                        <a href='./productList.php'><button class='btn secondary'>Back to home</button></a>
+                        <a href='./index.php'><button class='btn secondary'>Back to home</button></a>
                     </div>
                 </div>
             </div>

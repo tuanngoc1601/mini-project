@@ -1,10 +1,13 @@
 <?php
-include './templates/header.php';
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+    header("Cache-Control: max-age=2592000");
 ?>
 
 <?php
-$filepath = realpath(dirname(__FILE__));
-include_once($filepath . '/app/controllers/productController.php');
+$filepath = realpath($_SERVER["DOCUMENT_ROOT"]);
+include_once($filepath . '/mini-project/app/controllers/productController.php');
 ?>
 
 <?php
@@ -47,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 <div class="image">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <a href="./productList.php">
+                <a href="./index.php">
                     <div class="text">
                         <p>Product list</p>
                     </div>
@@ -92,7 +95,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                 ?>
 
 
-                <form action="newProduct.php" method="post" class="new-product-form">
+                <form action="?controller=product&action=add" method="post" class="new-product-form">
                     <div class="form-content">
                         <div class="form-group w-75">
                             <label for="name">Product name: </label><br />
