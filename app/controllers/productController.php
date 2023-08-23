@@ -1,8 +1,9 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include($filepath.'/../models/productModel.php');
-include($filepath.'/../helper/format.php');
-include($filepath.'/../app/controllers/baseController.php');
+include_once($filepath.'/../models/productModel.php');
+include_once($filepath.'/../../helper/format.php');
+include_once($filepath.'/../../helper/validate.php');
+include_once($filepath.'/../../app/controllers/baseController.php');
 ?>
 
 <?php
@@ -78,11 +79,10 @@ class ProductController extends BaseController
 
     public function insertOne($name, $price, $description) {
         Session::checkLogin();
-        $namePattern = '/^[a-zA-Z0-9\s]{1,255}$/';
-        if (!preg_match($namePattern, $name)) {
+        if (!Validation::validateProductName($name)) {
             return ["error" => "Name must contain only alphanumeric characters and spaces. Length is from 1 to 255 characters"];
         }
-        if (!is_numeric($price) || floatval($price) < 0) {
+        if (!Validation::validateProductPrice($price)) {
             return ["error" => "Price must be a positive number"];
         }
         $data = $this->model->insert($name, floatval($price), $description);
@@ -103,11 +103,10 @@ class ProductController extends BaseController
 
     public function update($name, $price, $description, $id) {
         Session::checkLogin();
-        $namePattern = '/^[a-zA-Z0-9\s]{1,255}$/';
-        if (!preg_match($namePattern, $name)) {
+        if (!Validation::validateProductName($name)) {
             return ["error" => "Name must contain only alphanumeric characters and spaces. Length is from 1 to 255 characters"];
         }
-        if (!is_numeric($price) || floatval($price) < 0) {
+        if (!Validation::validateProductPrice($price)) {
             return ["error" => "Price must be a positive number"];
         }
         $data = $this->model->update($name, floatval($price), $description, $id);

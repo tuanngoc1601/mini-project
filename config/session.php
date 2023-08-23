@@ -46,7 +46,7 @@ class Session
     public static function checkLogin()
     {
         self::init();
-        if (self::get("user_login") == true ) {
+        if (self::get("user_login") == true && $_GET['controller'] != 'product') {
             header("Location:/?controller=product&action=list");
         }
     }
@@ -57,7 +57,7 @@ class Session
         setcookie("user_login", "", time() - 3600);
         setcookie("user_id", "", time() - 3600);
         setcookie('name', "", time() - 3600);
-        header("Location:login.php");
+        header("Location:index.php");
     }
     // xóa or hủy phiên làm việc
 }

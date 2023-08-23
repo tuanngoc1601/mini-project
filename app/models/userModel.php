@@ -32,5 +32,14 @@ class userModel
 
         return $result;
     }
+
+    public function get_user_by_id_and_username($id, $username) {
+        $id = mysqli_real_escape_string($this->db->link, $id);
+        $username = mysqli_real_escape_string($this->db->link, $username);
+        $query = "SELECT * FROM users WHERE username = '$username' AND id = '$id' LIMIT 1";
+        $result = $this->db->select($query);
+
+        return $result;
+    }
 }
 ?>

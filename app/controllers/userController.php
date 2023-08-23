@@ -2,9 +2,9 @@
 $filepath = realpath(dirname(__FILE__));
 // include($filepath.'/../../config/session.php');
 // Session::checkLogin();
-include($filepath.'/../models/userModel.php');
-include($filepath.'/../helper/format.php');
-include($filepath.'/../app/controllers/baseController.php');
+include_once($filepath.'/../models/userModel.php');
+include_once($filepath.'/../../helper/format.php');
+include($filepath.'\baseController.php');
 ?>
 
 <?php
