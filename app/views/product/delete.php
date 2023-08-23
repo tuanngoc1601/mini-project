@@ -1,26 +1,3 @@
-<?php
-include './templates/header.php';
-?>
-
-<?php
-$filepath = realpath(dirname(__FILE__));
-include_once($filepath . '/app/controllers/productController.php');
-?>
-
-<?php
-if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-    Session::destroy();
-}
-
-if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
-}
-$controller = new ProductController();
-    // delete controller
-    $result = [];
-    $result = $controller->delete($id);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -81,8 +58,8 @@ $controller = new ProductController();
                         <h1>Delete product page</h1>
                     </div>
                     <?php 
-                    if (isset($result['success'])) {
-                        $success = $result['success'];
+                    if (isset($data['success'])) {
+                        $success = $data['success'];
                         echo "<p class='noti success'>
                             <span onclick='removeNotification()'>x</span
                             >&nbsp;&nbsp; $success
@@ -90,8 +67,8 @@ $controller = new ProductController();
                     }
                     ?>
                     <?php 
-                    if (isset($result['error'])) {
-                        $error = $result['error'];
+                    if (isset($data['error'])) {
+                        $error = $data['error'];
                         echo "<p class='noti danger'>
                             <span onclick='removeNotification()'>x</span
                             >&nbsp;&nbsp; $error
@@ -99,7 +76,7 @@ $controller = new ProductController();
                     }
                     ?>
                     <div class="content">
-                        <a href='./index.php'><button class='btn secondary'>Back to home</button></a>
+                        <a href='/?controller=product&action=list'><button class='btn secondary'>Back to home</button></a>
                     </div>
                 </div>
             </div>

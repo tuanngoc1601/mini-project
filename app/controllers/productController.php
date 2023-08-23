@@ -117,12 +117,13 @@ class ProductController extends BaseController
         }
     }
 
-    public function delete($id) {
+    public function delete() {
+        $id = intval($_GET['id']);
         $data = $this->model->delete($id);
         if ($data != false) {
-            return ['success' => "Product successfully deleted"];
+            return $this->render('delete', ["success" => "Product successfully deleted"]);
         } else {
-            return ['error' => "Delete product failed"];
+            return $this->render('delete',  ['error' => "Delete product failed"]);
         }
     }
 }

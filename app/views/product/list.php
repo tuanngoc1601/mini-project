@@ -6,11 +6,6 @@
 ?>
 
 <?php
-$filepath = realpath($_SERVER["DOCUMENT_ROOT"]);
-include_once($filepath . '/app/controllers/productController.php');
-?>
-
-<?php
 $products = [];
 if (!isset($data['error'])) {
     $totalPages = $data['totalPages'];
@@ -104,7 +99,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                     <td class='action'>
                                         <a href='./?controller=product&action=detail&id=$id'><button class='btn info text-small'>View</button></a>
                                         <a href='./?controller=product&action=edit&id=$id'><button class='btn primary text-small'>Edit</button></a>
-                                        <a href='./deleteProduct.php?id=$id'><button class='btn danger text-small'>Delete</button></a>
+                                        <a href='./?controller=product&action=delete&id=$id'><button class='btn danger text-small'>Delete</button></a>
                                     </td>
                                     </tr>";
                             }
